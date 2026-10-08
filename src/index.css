@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --camp-bg: #0d131a;
+    --camp-surface: #141c26;
+    --camp-panel: rgba(18, 26, 38, 0.85);
+    --camp-border: rgba(125, 211, 252, 0.15);
+    --camp-wood: #2c1d11;
+    --camp-wood-border: #8b5a2b;
+    --camp-pine: #1b4332;
+    --camp-amber: #f59e0b;
+    --camp-fire: #ea580c;
+  }
+
+  body {
+    background-color: var(--camp-bg);
+    color: #f1f5f9;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    user-select: none;
+    overflow: hidden;
+  }
+}
+
+/* Custom Dialogue & UI Utility Styles */
+@layer components {
+  /* Main Dialogue Box Container */
+  .dialogue-panel {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.88) 0%, rgba(10, 15, 29, 0.96) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(56, 189, 248, 0.1);
+  }
+
+  /* Rustic Wooden / Summer Camp Dialogue Box Alternative */
+  .dialogue-panel-camp {
+    background: linear-gradient(180deg, rgba(35, 24, 16, 0.92) 0%, rgba(20, 14, 9, 0.98) 100%);
+    backdrop-filter: blur(14px);
+    border: 2px solid rgba(217, 119, 6, 0.35);
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(254, 215, 170, 0.15);
+  }
+
+  /* Speaker Nameplate / Tag */
+  .speaker-nameplate {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.9) 0%, rgba(217, 119, 6, 0.9) 100%);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+    border: 1px solid rgba(254, 215, 170, 0.3);
+  }
+
+  /* Dialogue Choice Options */
+  .dialogue-choice-btn {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dialogue-choice-btn:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
+  }
+
+  /* Quick Dialogue Action Buttons (Auto, Skip, Log, Save) */
+  .dialogue-ctrl-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.15s ease-in-out;
+  }
+
+  .dialogue-ctrl-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .dialogue-ctrl-btn.active {
+    background: rgba(245, 158, 11, 0.25);
+    border-color: rgba(245, 158, 11, 0.6);
+    color: #fbbf24;
+  }
+}
+
+/* Animations */
+@keyframes dialogue-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-dialogue-prompt {
+  animation: dialogue-bounce 1s infinite ease-in-out;
+}
+
+/* Zero-Overhead Suspension Mode when App is Minimized / Hidden */
+html.app-minimized * {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+
