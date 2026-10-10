@@ -69,12 +69,12 @@ A task or phase is considered **Done** only when:
 ## Phase 3 — Declarative Condition & Scene Runner Engine
 > **Goal:** Build the narrative runtime engine that evaluates declarative conditions, resolves choices with strict priority, and steps through dialogue.
 
-- [ ] Implement `src/engine/conditionEvaluator.ts`:
+- [x] Implement `src/engine/conditionEvaluator.ts`:
   - Evaluates `DeclarativeCondition` objects against the current `GameState`.
   - Supports operators: `==`, `!=`, `>`, `>=`, `<`, `<=`.
   - Supports targets: `'stat'`, `'flag'`, and `'relationshipStatus'`.
   - Evaluates multiple conditions using logical AND.
-- [ ] Implement `src/engine/sceneRunner.ts`:
+- [x] Implement `src/engine/sceneRunner.ts`:
   - `getCurrentLine()`: Returns active dialogue line, resolving `conditionalVariant` if conditions pass.
   - `advanceDialogue()`: Steps to next line in the active scene.
   - `selectChoice(choiceId: string)`:
@@ -82,14 +82,14 @@ A task or phase is considered **Done** only when:
     - Routes to next scene according to **Priority 1 (`ChoiceOption.nextSceneId`)**.
     - If choice has no `nextSceneId`, routes via **Priority 2 (`GameScene.nextSceneId`)**.
     - If neither exists, signals **Priority 3 (Episode / Story Conclusion)**.
-- [ ] Implement automated tests for:
+- [x] Implement automated tests for:
   - Condition evaluation (testing true, false, edge boundary values).
   - Choice routing priority (choice-level destination overriding scene-level fallback).
 
 ### Phase 3 Acceptance Criteria
-- [ ] Condition evaluator correctly overrides dialogue text when flags or stat thresholds are satisfied.
-- [ ] Scene Runner advances line-by-line and transitions between scenes based on choice priority.
-- [ ] Zero executable JavaScript functions exist in narrative data files.
+- [x] Condition evaluator correctly overrides dialogue text when flags or stat thresholds are satisfied.
+- [x] Scene Runner advances line-by-line and transitions between scenes based on choice priority.
+- [x] Zero executable JavaScript functions exist in narrative data files.
 
 ---
 
