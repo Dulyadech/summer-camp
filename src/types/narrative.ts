@@ -2,6 +2,69 @@
  * Core Narrative Types and Schemas for Summer Camp
  */
 
+import type { RelationshipStatus } from "./game";
+
+// ==========================================
+// Declarative Narrative & Scene Graph Schemas
+// ==========================================
+
+export interface DeclarativeCondition {
+  type: "stat" | "flag" | "relationshipStatus";
+  target?: "jake" | "ethan" | "ryan";
+  statKey?: "attraction" | "trust";
+  flagKey?: string;
+  operator: "==" | "!=" | ">" | ">=" | "<" | "<=";
+  value: number | boolean | string;
+}
+
+export interface ConditionalDialogueVariant {
+  conditions: DeclarativeCondition[];
+  overrideText: string;
+  overrideExpression?: string;
+}
+
+export interface ChoiceOption {
+  id: string;
+  text: string;
+  category: "tone" | "action" | "deception";
+  consequences: {
+    targetCharacter?: "jake" | "ethan" | "ryan";
+    attractionDelta?: number;
+    trustDelta?: number;
+    newStatus?: RelationshipStatus;
+    setFlags?: Record<string, boolean>;
+  };
+  nextSceneId?: string;
+}
+
+export interface DialogueLine {
+  id: string;
+  speaker: "protagonist" | "jake" | "ethan" | "ryan" | "narrator";
+  text: string;
+  spriteState?: {
+    character: "jake" | "ethan" | "ryan";
+    expression: string;
+    position: "left" | "center" | "right";
+  };
+  cameraEffect?: "zoom_in" | "pan_left" | "shake" | "default";
+  conditionalVariant?: ConditionalDialogueVariant;
+}
+
+export interface GameScene {
+  id: string;
+  episode: 1 | 2 | 3 | 4;
+  day: 1 | 2 | 3 | 4 | 5;
+  backgroundId: string;
+  bgmId?: string;
+  dialogue: DialogueLine[];
+  choices?: ChoiceOption[];
+  nextSceneId?: string;
+}
+
+// ==========================================
+// Existing Node Graph & Character Contracts
+// ==========================================
+
 export interface Character {
   id: string;
   name: string;

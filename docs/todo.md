@@ -44,25 +44,25 @@ A task or phase is considered **Done** only when:
 ## Phase 2 — Core Game State & Data Contracts
 > **Goal:** Implement the full TypeScript data contracts and centralized Zustand store matching the GDD specifications.
 
-- [ ] Create `src/types/game.ts` defining:
+- [x] Create `src/types/game.ts` defining:
   - `RelationshipStatus` (`'casual_interest' | 'romantic_interest' | 'mutually_acknowledged' | 'exclusive'`)
   - `CharacterState` (`attraction: number`, `trust: number`, `status: RelationshipStatus`)
   - `GameState` (`currentSceneId`, `protagonistName`, `characters: { jake, ethan, ryan }`, `flags: Record<string, boolean>`, `history: string[]`)
-- [ ] Create `src/types/narrative.ts` defining:
+- [x] Create `src/types/narrative.ts` defining:
   - `DeclarativeCondition` (`type`, `target`, `statKey`, `flagKey`, `operator`, `value`)
   - `ConditionalDialogueVariant` (`conditions: DeclarativeCondition[]`, `overrideText`, `overrideExpression`)
   - `ChoiceOption` (`id`, `text`, `category`, `consequences`, `nextSceneId`)
   - `DialogueLine` (`id`, `speaker`, `text`, `spriteState`, `cameraEffect`, `conditionalVariant`)
   - `GameScene` (`id`, `episode: 1 | 2 | 3 | 4`, `day: 1 | 2 | 3 | 4 | 5`, `backgroundId`, `bgmId`, `dialogue`, `choices`, `nextSceneId`)
-- [ ] Implement `src/state/gameStore.ts` using Zustand:
+- [x] Implement `src/state/gameStore.ts` using Zustand:
   - Initial state matching GDD defaults (Attraction = 0, Trust = 50, Status = `'casual_interest'`, Flags = `{}`).
   - Mutations for `applyConsequences` (attractionDelta, trustDelta, newStatus, setFlags).
   - Mutations for `setCurrentScene`, `recordHistory`, and `resetGame`.
-- [ ] Unit test: Verify state mutations clamp `attraction` and `trust` within `0 - 100`.
+- [x] Unit test: Verify state mutations clamp `attraction` and `trust` within `0 - 100`.
 
 ### Phase 2 Acceptance Criteria
-- [ ] All TypeScript types compile cleanly and reflect `docs/gdd.md` Section 20 exactly.
-- [ ] State mutations correctly update numerical stats, toggle flags, and maintain visited scene history.
+- [x] All TypeScript types compile cleanly and reflect `docs/gdd.md` Section 20 exactly.
+- [x] State mutations correctly update numerical stats, toggle flags, and maintain visited scene history.
 
 ---
 
